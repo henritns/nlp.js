@@ -1,3 +1,5 @@
+Testing stuff. --henritns
+
 ![NLPjs logo](screenshots/nlplogo.gif)
 
 # NLP.js
@@ -11,7 +13,7 @@
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=axa-group_nlp.js&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=axa-group_nlp.js)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=axa-group_nlp.js&metric=security_rating)](https://sonarcloud.io/dashboard?id=axa-group_nlp.js)
 
-*If you're looking for the version 3 docs, you can find them here* [Version 3](docs/v3/README.md)
+_If you're looking for the version 3 docs, you can find them here_ [Version 3](docs/v3/README.md)
 
 "NLP.js" is a general natural language utility for nodejs. Currently supporting:
 
@@ -214,32 +216,32 @@ You can see a great example of use in the folder [`/examples/02-qna-classic`](ht
 You can start to build your NLP from scratch with a few lines:
 
 ```javascript
-const { NlpManager } = require('node-nlp');
+const { NlpManager } = require("node-nlp")
 
-const manager = new NlpManager({ languages: ['en'], forceNER: true });
+const manager = new NlpManager({ languages: ["en"], forceNER: true })
 // Adds the utterances and intents for the NLP
-manager.addDocument('en', 'goodbye for now', 'greetings.bye');
-manager.addDocument('en', 'bye bye take care', 'greetings.bye');
-manager.addDocument('en', 'okay see you later', 'greetings.bye');
-manager.addDocument('en', 'bye for now', 'greetings.bye');
-manager.addDocument('en', 'i must go', 'greetings.bye');
-manager.addDocument('en', 'hello', 'greetings.hello');
-manager.addDocument('en', 'hi', 'greetings.hello');
-manager.addDocument('en', 'howdy', 'greetings.hello');
+manager.addDocument("en", "goodbye for now", "greetings.bye")
+manager.addDocument("en", "bye bye take care", "greetings.bye")
+manager.addDocument("en", "okay see you later", "greetings.bye")
+manager.addDocument("en", "bye for now", "greetings.bye")
+manager.addDocument("en", "i must go", "greetings.bye")
+manager.addDocument("en", "hello", "greetings.hello")
+manager.addDocument("en", "hi", "greetings.hello")
+manager.addDocument("en", "howdy", "greetings.hello")
 
 // Train also the NLG
-manager.addAnswer('en', 'greetings.bye', 'Till next time');
-manager.addAnswer('en', 'greetings.bye', 'see you soon!');
-manager.addAnswer('en', 'greetings.hello', 'Hey there!');
-manager.addAnswer('en', 'greetings.hello', 'Greetings!');
+manager.addAnswer("en", "greetings.bye", "Till next time")
+manager.addAnswer("en", "greetings.bye", "see you soon!")
+manager.addAnswer("en", "greetings.hello", "Hey there!")
+manager.addAnswer("en", "greetings.hello", "Greetings!")
 
 // Train and save the model.
-(async() => {
-    await manager.train();
-    manager.save();
-    const response = await manager.process('en', 'I should go now');
-    console.log(response);
-})();
+;(async () => {
+  await manager.train()
+  manager.save()
+  const response = await manager.process("en", "I should go now")
+  console.log(response)
+})()
 ```
 
 This produces the following result in a console:
@@ -285,7 +287,10 @@ By default, the neural network tries to avoid false positives. To achieve that, 
 If you don't want to avoid those false positives, and you feel more comfortable with classifications into the intents that you declare, then you can disable this behavior by setting the `useNoneFeature` to false:
 
 ```javascript
-const manager = new NlpManager({ languages: ['en'], nlu: { useNoneFeature: false } });
+const manager = new NlpManager({
+  languages: ["en"],
+  nlu: { useNoneFeature: false },
+})
 ```
 
 ## Log Training Progress
@@ -294,14 +299,14 @@ You can also add a log progress, so you can trace what is happening during the t
 You can log the progress to the console:
 
 ```javascript
-const nlpManager = new NlpManager({ languages: ['en'], nlu: { log: true } });
+const nlpManager = new NlpManager({ languages: ["en"], nlu: { log: true } })
 ```
 
 Or you can provide your own log function:
 
 ```javascript
-const logfn = (status, time) => console.log(status, time);
-const nlpManager = new NlpManager({ languages: ['en'], nlu: { log: logfn } });
+const logfn = (status, time) => console.log(status, time)
+const nlpManager = new NlpManager({ languages: ["en"], nlu: { log: logfn } })
 ```
 
 ## Contributing
